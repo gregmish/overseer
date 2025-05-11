@@ -1,0 +1,72 @@
+﻿<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.overseer">
+
+    <!-- Required permissions -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <!-- External storage permissions for compatibility -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"
+        android:requiredForAllUsers="false"
+        android:maxSdkVersion="33"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"
+        android:requiredForAllUsers="false"
+        android:maxSdkVersion="33"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"
+        android:requiredForAllUsers="false"
+        android:maxSdkVersion="33"/>
+
+    <!-- Legacy storage support -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"/>
+
+    <!-- App installer permission -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+
+    <application
+        android:label="Overseer"
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="false"
+        android:requestLegacyExternalStorage="true"
+        android:allowBackup="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Main Activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- Voice mic listener service -->
+        <service
+            android:name=".services.MicListenerService"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+
+        <!-- App update receiver -->
+        <receiver
+            android:name=".receivers.AppUpdateReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+
+    </application>
+</manifest>

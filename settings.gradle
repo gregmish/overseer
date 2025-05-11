@@ -1,0 +1,5 @@
+﻿// Set the root project name
+rootProject.name = "overseer"
+
+// Include all subprojects/modules (if any)
+include ':app'

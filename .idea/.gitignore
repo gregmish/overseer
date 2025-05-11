@@ -1,0 +1,31 @@
+# Flutter-specific
+**/build/
+.dart_tool/
+.packages
+.pub/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Gradle-specific
+.gradle/
+android/.gradle/
+android/local.properties
+*.iml
+
+# Android-specific
+*.apk
+*.jks
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# IDE-specific
+.idea/
+.vscode/
+
+# Miscellaneous
+*.log
